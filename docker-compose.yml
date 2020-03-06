@@ -1,0 +1,23 @@
+version: "2"
+services:
+  batch-springboot:
+    image: batch-springboot
+    ports:
+      - "8081:8081"
+    networks:
+      - backendn
+    depends_on:
+      - mdb
+  mdb:
+    image: mysql:latest
+    networks:
+      - backendn
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=springdemo
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=1234
+
+
+networks:
+  backendn:
